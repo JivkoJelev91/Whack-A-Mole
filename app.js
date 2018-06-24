@@ -25,7 +25,7 @@ class WhackAMole{
 
     peep() {
         const time = this.randomTime(300, 1300);
-        const hole = this.randomHole();
+        const hole = this.randomHole(this.holes);
         let that = this;
         hole.classList.add('up');
         setTimeout(() => {
