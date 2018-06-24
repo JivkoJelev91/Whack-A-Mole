@@ -10,4 +10,4 @@
 
 ##### Enjoy!
 
-![test](./pictures/start.jpg?raw=true "Optional Title")
+![test](./pictures/game.png?raw=true "Optional Title")
