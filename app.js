@@ -15,7 +15,7 @@ class WhackAMole{
     }
 
     randomHole() {
-        const hole = this.holes[Math.round(Math.random() * this.holes.length)];
+        const hole = this.holes[Math.floor(Math.random() * this.holes.length)];
         if (hole === this.lastHole) {
           return this.randomHole(this.holes);
         }
@@ -36,11 +36,13 @@ class WhackAMole{
 
     startGame(event) {
         this.scoreBoard.textContent = 0;
-        this.score = 0;
         this.timeUp = false;
+        this.score = 0;
         let that = this;
         this.peep();
-        setTimeout(() => that.timeUp = true ,15000);
+        setTimeout(() => {
+            that.timeUp = true;
+        }, 15000);
     }
 
     bonk(event){
