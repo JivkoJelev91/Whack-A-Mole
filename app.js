@@ -4,6 +4,7 @@ class WhackAMole{
         this.holes = document.querySelectorAll('.hole');
         this.scoreBoard = document.querySelector('.score');
         this.moles = document.querySelectorAll('.mole');
+        this.btn = document.getElementById('btn');
         this.timeUp = false;
         this.score = 0;
         this.lastHole;
@@ -14,7 +15,7 @@ class WhackAMole{
     }
 
     randomHole() {
-        const hole = this.holes[Math.floor(Math.random() * this.holes.length)];
+        const hole = this.holes[Math.round(Math.random() * this.holes.length)];
         if (hole === this.lastHole) {
           return this.randomHole(this.holes);
         }
@@ -23,7 +24,7 @@ class WhackAMole{
     }
 
     peep() {
-        const time = this.randomTime(500, 1500);
+        const time = this.randomTime(300, 1300);
         const hole = this.randomHole();
         let that = this;
         hole.classList.add('up');
@@ -41,7 +42,7 @@ class WhackAMole{
         this.peep();
         setTimeout(() => {
             that.timeUp = true;
-        }, 10000);
+        }, 15000);
     }
 
     bonk(event){
@@ -54,7 +55,7 @@ class WhackAMole{
     }
 
     init(){
-        document.getElementById('btn').addEventListener('click' ,(event) => this.startGame(event));
+        this.btn.addEventListener('click' ,(event) => this.startGame(event));
         this.moles.forEach(mole => mole.addEventListener('click',(event) => this.bonk(event)));
     }
 }
