@@ -4,8 +4,8 @@
 
 #### Quick Start:
 
-#### <strong>Git clone</strong> https://github.com/JivkoJelev91/Whack-A-Mole
+##### <strong>Git clone</strong> https://github.com/JivkoJelev91/Whack-A-Mole
 
-### <strong>Run</strong> <code>HTML</code> file in the browser.
+##### <strong>Run</strong> <code>HTML</code> file in the browser.
 
-### Enjoy!
+##### Enjoy!
