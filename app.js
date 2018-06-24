@@ -36,19 +36,15 @@ class WhackAMole{
 
     startGame(event) {
         this.scoreBoard.textContent = 0;
-        this.timeUp = false;
         this.score = 0;
+        this.timeUp = false;
         let that = this;
         this.peep();
-        setTimeout(() => {
-            that.timeUp = true;
-        }, 15000);
+        setTimeout(() => that.timeUp = true ,15000);
     }
 
     bonk(event){
-        if(!event.isTrusted) {
-            return;
-        }
+        if(!event.isTrusted) return;
         this.score++;
         event.path[1].classList.remove('up');
         this.scoreBoard.textContent = this.score;
@@ -61,8 +57,3 @@ class WhackAMole{
 }
 
 new WhackAMole().init();
-
-
-
-
-
