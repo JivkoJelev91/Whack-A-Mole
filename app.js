@@ -1,11 +1,11 @@
 class WhackAMole{
-
     constructor() {
         this.holes = document.querySelectorAll('.hole');
         this.scoreBoard = document.querySelector('.score');
         this.moles = document.querySelectorAll('.mole');
-        this.btn = document.getElementById('btn');
+        this.btnStart = document.getElementById('btnStart');
         this.timeUp = false;
+        this.lastHighestScore = 0;
         this.score = 0;
         this.lastHole;
     }
@@ -26,11 +26,10 @@ class WhackAMole{
     peep() {
         const time = this.randomTime(300, 1300);
         const hole = this.randomHole(this.holes);
-        let that = this;
         hole.classList.add('up');
         setTimeout(() => {
           hole.classList.remove('up');
-          if (!that.timeUp) this.peep();
+          if (!this.timeUp) this.peep();
         }, time);
     }
 
@@ -38,23 +37,42 @@ class WhackAMole{
         this.scoreBoard.textContent = 0;
         this.timeUp = false;
         this.score = 0;
-        let that = this;
         this.peep();
         setTimeout(() => {
-            that.timeUp = true;
+            this.timeUp = true;
+            if(this.timeUp){
+                localStorage.setItem('bestScore', JSON.stringify(this.score));
+                this.renderBestScores();
+            }
         }, 15000);
     }
 
     bonk(event){
         if(!event.isTrusted) return;
         this.score++;
-        event.path[1].classList.remove('up');
+        event.target.classList.remove('up');
         this.scoreBoard.textContent = this.score;
     }
 
+    renderBestScores(){
+        let highestScore = JSON.parse(localStorage.getItem('bestScore'));
+        if(this.lastHighestScore < highestScore) this.lastHighestScore = highestScore;
+            document.getElementById('bestResult').innerHTML = `
+               <ul> 
+                    <li class="scores">
+                        <span>Highest score -</span> 
+                        <span style="${this.lastHighestScore > 10 ? 'color: red': 'color: black'}">
+                            ${this.lastHighestScore || 0}
+                        </span>
+                    </li>
+               </ul>
+            `;
+    }
+
     init(){
-        this.btn.addEventListener('click' ,(event) => this.startGame(event));
+        this.btnStart.addEventListener('click' ,(event) => this.startGame(event));
         this.moles.forEach(mole => mole.addEventListener('click',(event) => this.bonk(event)));
+        this.renderBestScores();
     }
 }
 

@@ -68,11 +68,29 @@ body {
   top:0;
 }
 
-#btn{
-    text-align: center;
-    padding-top:50px;
+#btnContainer{
+  width:500px;
+  padding: 1% 0;
+  display:flex;
+  justify-content: space-between;
+  margin:0 auto;
+  text-align: center;
 }
 
-#btn img{
-    width:120px;
+.start{
+  max-width: 40%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#btnStart{
+  align-self:center;
+}
+
+#bestResult{
+  width:60%;
+}
+
+.scores{
+  font-size:4em;
 }
